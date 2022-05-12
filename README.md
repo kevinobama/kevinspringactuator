@@ -699,3 +699,40 @@ If the application is using Spring Security, we can secure these endpoints by de
 security.user.name=admin
 security.user.password=secret
 management.security.role=SUPERUSER
+
+
+
+What Is The Difference Between @Bean and @Component and When to Use What?
+Last Update: 15.01.2020. By Jens in Spring Boot
+
+A question that almost always comes up in my training. So, it is time to answer it for anyone and not only in-class.
+
+What have @Bean and @Component in common?
+The essential thing both annotations help with is adding Spring Bean to the Spring Context. The result is the same, Bean is in context, yet, the how is different.
+
+@Bean
+@Bean works in conjunction with a configuration class (with @Configuration) and thus in the annotation based configuration.
+
+It also is used on the methods inside of such a configuration class. Telling Spring to add whatever the method returns to the Spring Context. It’s done explicitly.
+
+By default, it will use the name of the method as the bean id/name. An alternative, you can specify it in the @Bean annotation.
+
+We explicitly declare the bean.
+
+@Component
+@Component is used on our classes, so Spring knows that it should add it. However, it only works, if we enabled a component scan for our application and our class is included.
+
+With a component scan, Spring will scan the entire classpath and will add all @Component annotated classes to the Spring Context (with adjustable Filtering).
+
+We let Spring pick up the bean
+
+The difference
+The result for both annotations is the same. The bean is added to the Spring context. However, there are some issues to look out for.
+
+Let’s say we got a module which is shared in multiple apps and it contains a few services. Not all are needed for each app.
+
+If use @Component on those service classes and the component scan in the application, we might end up detecting more beans than necessary. In this case, you either had to adjust the filtering of the component scan or provide the configuration that even the unused beans can run. Otherwise, the application context won’t start.
+
+In this case, it is better to work with @Bean annotation and only instantiate those beans, which are required individually in each app.
+
+So, essentially, use @Bean for adding third-party classes to the context. And @Component if it is just inside your single application.
