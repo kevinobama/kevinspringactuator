@@ -1,11 +1,10 @@
 package com.actuator.actuator;
 
-import com.actuator.actuator.config.User;
+import com.actuator.actuator.beanclasses.BeanUser;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 public class ActuatorApplication {
@@ -15,7 +14,7 @@ public class ActuatorApplication {
 	}
 
 	@Bean
-	public User myBean() {
-		return new User();
+	public BeanUser kevinBean() {
+		return new BeanUser();
 	}
 }

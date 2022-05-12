@@ -2,7 +2,7 @@ package com.actuator.actuator.console;
 
 //import com.actuator.actuator.component.ComponentDemo;
 import com.actuator.actuator.component.ComponentUser;
-import com.actuator.actuator.config.User;
+import com.actuator.actuator.beanclasses.BeanUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class KevinCommandLineRunner implements CommandLineRunner {
 
     @Autowired
-    private User user;
+    private BeanUser user;
 
     @Autowired
     private ComponentUser componentUser;
